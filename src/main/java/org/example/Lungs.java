@@ -5,7 +5,7 @@ public class Lungs implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             if (!lungsFull) {
                 System.out.println("🫁⬆️ Inhale... ");
                 lungsFull = true;
@@ -17,7 +17,7 @@ public class Lungs implements Runnable {
             try {
                 Thread.sleep(1000); // a second between breathing
             } catch (InterruptedException e) {
-                break; // if thread is interrupted - finish of while
+                Thread.currentThread().interrupt();
             }
 
         }

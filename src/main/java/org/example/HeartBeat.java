@@ -9,12 +9,12 @@ public class HeartBeat implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             System.out.println("Heart beat ❤");
             try {
                 Thread.sleep(milliSecondsBetweenBeats);
             } catch (InterruptedException e) {
-                break;
+                Thread.currentThread().interrupt();
             }
         }
     }
